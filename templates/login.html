@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+
+<style>
+    body{
+        background-image: url('https://www.wallpapertip.com/wmimgs/66-666819_website-design-background-creative-background-image-for-website.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;   
+        margin: 0;
+        border: 0;
+    }
+    a{
+        color:blue
+    }
+
+</style>
+
+<br><br><br>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Giriş Yap</h3>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            <!--  form.as_p yapıldıığında bootstrap4 kullanamadığımız için 3. parti bir uygulama indirerek böyle dahl ettik. -->
+            {{form|crispy}}
+            <br>
+            <button type ="submit" class = "btn btn-danger" style="margin-right: 300px;">Giriş Yap</button>
+            <a href="{% url 'user:changepassword' %}">Şifremi unuttum</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

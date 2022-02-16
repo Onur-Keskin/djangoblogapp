@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+    body{
+        background-image: url('https://wallpapercave.com/uwp/uwp1578707.gif');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;   
+        margin: 0;
+        border: 0;
+    }
+    p{
+        color: white;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 600;
+        font-size: 19px;
+    }
+    a{
+        color:black
+    }
+    h3{
+        color:white;
+    }
+</style>
+<div class= "row">       
+    <div class="col-lg-8">
+        <h3>Profil</h3>
+        <hr>
+    </div>    
+</div>
+{% if userinfos %}
+<p>{{userinfos.username}}</p>
+<p>{{userinfos.email}}</p>
+<a href="{% url 'user:updateuserinfo' user.id %}" class="btn btn-danger">Bilgilerimi Güncelle</a>
+{% else %}
+<div class="alert alert-danger">Kullanıcı bilgileri bulunamadı...</div>
+
+{% endif %}
+{% endblock %}

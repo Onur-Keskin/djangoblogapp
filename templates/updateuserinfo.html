@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+<style>
+    body{
+        background-image: url('https://cutewallpaper.org/21/website-background-wallpaper/Savin-NY-Website-Background-Web-Design,-Create,-Build,-Run-.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;   
+        margin: 0;
+        border: 0;
+    }
+    p{
+        color: black;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 600;
+        font-size: 19px;
+    }
+    a{
+        color:black
+    }
+</style>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Kullanıcı Bilgileri Güncelle</h3>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!--  form.as_p yapıldıığında bootstrap4 kullanamadığımız için 3. parti bir uygulama indirerek böyle dahl ettik. -->
+            {{form.media}}
+            {{form|crispy}}
+            <br>
+            <button type ="submit" class = "btn btn-danger">Güncelle</button>
+        </form>
+    </div>
+</div
+{% endblock %}

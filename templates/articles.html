@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+    body{
+        background-image: url('https://cutewallpaper.org/21/background-gif-html/Animated-Gif-Background-Image-Html-a-The-Best-HD-Wallpaper.gif');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;   
+        margin: 0;
+        border: 0;
+    }
+    p{
+        color: black;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 600;
+        font-size: 19px;
+    }
+    a{
+        color:black
+    }
+</style>
+
+    <div class= "row">       
+        <div class="col-lg-8">
+            <h3>Makaleler</h3>
+            <hr>
+        </div>    
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <form>
+                {% csrf_token %}
+                <input type="text" name="keyword" class="input-sm" maxlength="64" placeholder="Ara...">
+                <button type="submit" class="btn btn-primary">Ara</button>
+            </form>
+            <hr>
+        </div>
+    </div>
+    
+
+    {% if articles %}
+
+        {% for article in articles %}
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Post content-->
+                <article>
+                    <!-- Post header-->
+                    <header class="mb-4">
+                        <!-- Post title-->
+                        <a href="{% url 'article:detail' article.id %}"><h3 class="fw-bolder mb-1">{{article.title}}</h3></a>
+                        <hr>
+                        <!-- author-->
+                        <div class="text-muted fst-italic mb-2" >
+                            <p>Yazar: {{article.author.username}}</p>                          
+                        </div>
+                        <hr>
+                        <!-- Post meta content-->
+                        <div class="text-muted fst-italic mb-2">
+                            <p>Yayınlanma Tarihi: {{article.created_date}}</p>       
+                        </div>
+                        <hr>
+                        <!-- Post categories(Veritabanında eğer kategori de tutarsam burayı kullanabilirim)-->
+                        <!-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a> -->
+                    </header>
+                    <!-- Preview image figure-->
+                    {% if article.article_image %}
+                        <figure class="mb-4"><img class="img-fluid rounded" src="{{article.article_image.url}}" alt="..." /></figure>
+                    {% endif %}
+                    
+                    <!-- Post content-->
+                    <section class="mb-5">
+                        <p>
+                            {{article.content|safe|truncatewords:10}}
+                        </p>
+                        <a style="float:right; color:black; font-family: 'Quicksand', sans-serif;" href="{% url 'article:detail' article.id %}" class="btn btn-info" >Devamını Oku</a>
+                    </section>
+                </article>
+               
+            </div>
+        </div>
+        {% endfor %}
+    
+    {% else %}
+    <div class="alert alert-danger">
+        Makale Bulunamadı...
+    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% load crispy_forms_tags %}
+
+<style>
+    body{
+        background-image: url('https://www.teahub.io/photos/full/279-2792224_website-background-design-hd.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;   
+        margin: 0;
+        border: 0;
+    }
+
+</style>
+<br>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Makele Güncelle</h3>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!--  form.as_p yapıldıığında bootstrap4 kullanamadığımız için 3. parti bir uygulama indirerek böyle dahl ettik. -->
+            {{form.media}}
+            {{form|crispy}}
+            <br>
+            <button type ="submit" class = "btn btn-danger">Güncelle</button>
+        </form>
+    </div>
+</div
+
+
+{% endblock %}

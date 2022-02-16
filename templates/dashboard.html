@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap');
+    body{
+        background-image: url('https://cutewallpaper.org/21/vector-wallpaper-1920x1080/Vector-HD-Wallpaper-Background-Image-1920x1080-ID-.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;   
+    }
+    p{
+        color: white;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 600;
+        font-size: 19px;
+    }
+    a{
+        color: white;
+    }
+    h3{
+        color: white;
+    }
+    small{
+        color: white;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+    }
+    th{
+        color: white;
+    }
+    td{
+        color: white;
+    }
+    tr{
+        color: white;
+    }
+</style>
+
+<h3>Kontrol Paneli</h3>
+<hr>
+<p>
+    Hoşgeldiniz , <small>{{request.user.username}}</small>
+    
+</p>
+<hr>
+<a class="btn btn-danger" href="{% url 'article:addarticle' %}">Makele Ekle</a>
+<hr>
+
+    {% if articles %}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Başlık</th>
+                <th scope="col">Yazar</th>
+                <th scope="col">Tarih</th>
+                <th scope="col">Güncelle</th>
+                <th scope="col">Sil</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+
+                    <tr>
+                        <th scope="row">{{article.id}}</th>
+                        <td><a href="{% url 'article:detail' article.id %}">{{article.title}}</a></td>
+                        <td>{{article.author.username}}</td>
+                        <td>{{article.created_date}}</td>
+                        <td><a href="{% url 'article:update' article.id %}" class="btn btn-primary">Güncelle</a></td>
+                        <td><a href="{% url 'article:delete' article.id %}" class="btn btn-danger">Sil</a></td>
+                    </tr> 
+            
+
+                {% endfor %}
+          
+        </tbody>
+      </table>
+    {% else %}
+      <div class = "alert alert-danger">
+          Henüz böyle bir makaleniz bulunmuyor...
+      </div>
+    
+    {% endif %}
+
+    
+
+
+{% endblock body %}

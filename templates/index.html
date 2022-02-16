@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<!-- Alternatif gif'ler -->
+<!-- https://bloopglobal.com/wp-content/uploads/2020/11/interactive-presentation-header-1.gif (Giriş Yapılmamış gif'i Alernatif) --> 
+<!-- https://wallpapercave.com/wp/wp2757874.gif (Giriş Yapılmış gif'i) -->
+<!-- https://i.pinimg.com/originals/1c/b3/2e/1cb32e5eca87add3785208e57a3e0e3e.gif (Giriş Yapılmamış gif'i)-->
+<!-- https://miro.medium.com/max/1400/0*9tdJ-d9qrCWPdiSv.gif (Giriş Yapılmamış gif'i Alernatif) -->
+
+<p>
+    {% if request.user.is_authenticated %}
+        <!-- Giriş Yapılmış, {{request.user.username}} -->
+        <style>
+            body{
+                background-image: url('https://wallpapercave.com/wp/wp2757874.gif');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;   
+                margin: 0;
+                border: 0;
+            }
+            h3{
+                color: white;
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 600;
+                font-size: 25px;
+            }
+        
+        </style>
+        <div style = "margin-top: 80px;" class="text-center">
+            <h3>Hoşgeldin SIUUUUUUUUUUUUUUUUUU</h3>   
+        </div>    
+    {% else %}
+        <!-- Giriş Yapılmamış -->
+        <h3>Blog'a Hoşgeldiniz</h3> 
+        <style>
+            body{
+                background-image: url('https://miro.medium.com/max/1400/0*9tdJ-d9qrCWPdiSv.gif');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;   
+                margin: 0;
+                border: 0;
+            }
+        
+        </style>
+    
+    {% endif %}
+</p>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+<style>
+    body{
+        background-image: url('https://images.unsplash.com/photo-1553289038-6638b1a1802a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;   
+        margin: 0;
+        border: 0;
+    }
+
+</style>
+<br>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Kayıt Ol</h3>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            <!--  form.as_p yapıldıığında bootstrap4 kullanamadığımız için 3. parti bir uygulama indirerek böyle dahl ettik. -->
+            {{form|crispy}}
+            <br>
+            <button type ="submit" class = "btn btn-danger">Kayıt Ol</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
